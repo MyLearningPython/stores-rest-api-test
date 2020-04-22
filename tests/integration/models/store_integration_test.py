@@ -46,6 +46,7 @@ class StoreIntegrationTest(BaseTest):
     def test_store_json(self):
         store = StoreModel("test store")
         expected = {
+            "id": None,
             "name": "test store",
             "items": [],
         }
@@ -57,6 +58,7 @@ class StoreIntegrationTest(BaseTest):
             store = StoreModel("test store")
             item = ItemModel("test item", 12.34, 1)
             expected = {
+                "id": 1,
                 "name" : "test store",
                 "items" : [{"name" : "test item", "price" : 12.34}],
             }

@@ -11,7 +11,7 @@ class StoreTest(BaseTest):
 
                 self.assertEqual(response.status_code, 201)
                 self.assertIsNotNone(StoreModel.find_by_name("test_store"))
-                self.assertDictEqual({"name": "test_store", "items": []},
+                self.assertDictEqual({'id': 1, "name": "test_store", "items": []},
                                      json.loads(response.data))
 
     def test_store_duplicate(self):
@@ -42,7 +42,7 @@ class StoreTest(BaseTest):
                 response = client.get("/store/test_store")
 
                 self.assertEqual(response.status_code,200)
-                self.assertDictEqual({"name":"test_store", "items": []},
+                self.assertDictEqual({'id': 1, "name":"test_store", "items": []},
                                      json.loads(response.data))
                 self.assertIsNotNone(StoreModel.find_by_name("test_store"))
 
@@ -64,7 +64,7 @@ class StoreTest(BaseTest):
                 response = client.get("/store/test_store")
 
                 self.assertEqual(response.status_code, 200)
-                self.assertDictEqual({"name":"test_store",'items':
+                self.assertDictEqual({'id': 1, "name":"test_store",'items':
                                         [{
                                           'name': 'item',
                                           'price': 12.34
@@ -81,8 +81,8 @@ class StoreTest(BaseTest):
 
                 self.assertEqual(response.status_code, 200)
                 self.assertDictEqual({'stores': [
-                        {'items': [], 'name': 'test_store'},
-                        {'items': [], 'name': 'test_store_1'}
+                        {'id': 1, 'items': [], 'name': 'test_store'},
+                        {'id': 2, 'items': [], 'name': 'test_store_1'}
                     ]},
                     json.loads(response.data))
 
@@ -99,8 +99,8 @@ class StoreTest(BaseTest):
 
                 self.assertEqual(response.status_code, 200)
                 self.assertDictEqual({'stores': [
-                        {'items': [], 'name': 'test_store'},
-                        {'items': [
+                        {'id': 1, 'items': [], 'name': 'test_store'},
+                        {'id': 2, 'items': [
                             {'name': 'test item 1', 'price': 12.34},
                             {'name': 'test item 2', 'price': 45.67}
                         ], 'name': 'test_store_1'}
